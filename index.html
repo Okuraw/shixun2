@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱奇艺-热门影视综艺视频在线观看</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            height: 60px;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 15%;
+        }
+        
+        .logo {
+            width: 160px;
+            height: 60px;
+            background: url('https://www.iqiyipic.com/common/fix/site-v4/logo.png') no-repeat;
+            background-size: contain;
+            margin-right: 30px;
+        }
+        
+        .nav {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav li {
+            padding: 0 15px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .nav li:hover {
+            color: #00be06;
+        }
+        
+        .search-box {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            width: 200px;
+            height: 30px;
+            padding: 0 10px;
+            border: none;
+            outline: none;
+        }
+        
+        .search-box button {
+            height: 30px;
+            width: 40px;
+            background-color: #00be06;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* 主要内容区 */
+        .main {
+            width: 70%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* 轮播图 */
+        .banner {
+            width: 100%;
+            height: 450px;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 内容分类 */
+        .category-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 20px;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .category-tab.active {
+            color: #00be06;
+            border-bottom: 2px solid #00be06;
+        }
+        
+        /* 内容卡片 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .video-card {
+            background-color: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-cover {
+            width: 100%;
+            height: 150px;
+            background-color: #eee;
+            position: relative;
+        }
+        
+        .video-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .video-info {
+            padding: 10px;
+        }
+        
+        .video-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .video-meta {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* 底部 */
+        .footer {
+            background-color: #222;
+            color: #999;
+            padding: 30px 15%;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .footer-column li:hover {
+            color: #00be06;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo"></div>
+        <ul class="nav">
+            <li>首页</li>
+            <li>电视剧</li>
+            <li>电影</li>
+            <li>综艺</li>
+            <li>动漫</li>
+            <li>儿童</li>
+            <li>游戏</li>
+            <li>会员</li>
+        </ul>
+        <div class="search-box">
+            <input type="text" placeholder="搜索影片、明星">
+            <button>搜索</button>
+        </div>
+    </header>
+    
+    <!-- 主要内容区 -->
+    <div class="main">
+        <!-- 轮播图 -->
+        <div class="banner">
+            <img src="临江仙.jpg" alt="热门推荐">
+        </div>
+        
+        <!-- 分类标签 -->
+        <div class="category-tabs">
+            <div class="category-tab active">热门推荐</div>
+            <div class="category-tab">电视剧</div>
+            <div class="category-tab">电影</div>
+            <div class="category-tab">综艺</div>
+            <div class="category-tab">动漫</div>
+        </div>
+        
+        <!-- 视频内容网格 -->
+        <div class="content-grid">
+            <!-- 视频卡片1 -->
+            <div class="video-card">
+                <div class="video-cover">
+                    <img src="宁安如梦.jpg" alt="视频封面">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">宁安如梦</div>
+                    <div class="video-meta">已完结·这一次，姜雪宁又该如何选择？</div>
+                </div>
+            </div>
+            
+            <!-- 视频卡片2 -->
+            <div class="video-card">
+                <div class="video-cover">
+                    <img src="爱你.jpg" alt="视频封面">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">爱你</div>
+                    <div class="video-meta">已完结·爱你是我做过最好的事</div>
+                </div>
+            </div>
+            
+            <!-- 视频卡片3 -->
+            <div class="video-card">
+                <div class="video-cover">
+                    <img src="临江仙2.jpg" alt="视频封面">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">临江仙</div>
+                    <div class="video-meta">已完结·鸿蒙生两仪，恨为爱之极·热度破万</div>
+                </div>
+            </div>
+            
+            <!-- 视频卡片4 -->
+            <div class="video-card">
+                <div class="video-cover">
+                    <img src="白月梵星.png" alt="视频封面">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">白月梵星</div>
+                    <div class="video-meta">已完结·全40集</div>
+                </div>
+            </div>
+            
+            <!-- 视频卡片5 -->
+            <div class="video-card">
+                <div class="video-cover">
+                    <img src="奔跑吧.jpg" alt="视频封面">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">奔跑吧第九季</div>
+                    <div class="video-meta">白鹿介绍家乡常州特色</div>
+                </div>
+            </div>
+			<!-- 视频卡片6-10 -->
+	            <div class="video-card">
+	                <div class="video-cover">
+	                    <img src="北上.jpg" alt="视频封面">
+	                    <div class="play-icon">▶</div>
+	                </div>
+	                <div class="video-info">
+	                    <div class="video-title">北上</div>
+	                    <div class="video-meta">已完结·全38集·运河邻里 烟火人家</div>
+	                </div>
+	            </div>
+	            
+	            <div class="video-card">
+	                <div class="video-cover">
+	                    <img src="公诉.jpg" alt="视频封面">
+	                    <div class="play-icon">▶</div>
+	                </div>
+	                <div class="video-info">
+	                    <div class="video-title">公诉</div>
+	                    <div class="video-meta">全38集·迪丽热巴安旎跨国追踪</div>
+	                </div>
+	            </div>
+	            
+	            <div class="video-card">
+	                <div class="video-cover">
+	                    <img src="卿卿日常.jpg" alt="视频封面">
+	                    <div class="play-icon">▶</div>
+	                </div>
+	                <div class="video-info">
+	                    <div class="video-title">卿卿日常</div>
+	                    <div class="video-meta">已完结·先婚后爱双向攻略·群像魅力</div>
+	                </div>
+	            </div>
+	            
+	            <div class="video-card">
+	                <div class="video-cover">
+	                    <img src="周生如故.jpg" alt="视频封面">
+	                    <div class="play-icon">▶</div>
+	                </div>
+	                <div class="video-info">
+	                    <div class="video-title">周生如故</div>
+	                    <div class="video-meta">“时宜，只是南辰王府的十一”</div>
+	                </div>
+	            </div>
+	            
+	            <div class="video-card">
+	                <div class="video-cover">
+	                    <img src="一生一世.jpg" alt="视频封面">
+	                    <div class="play-icon">▶</div>
+	                </div>
+	                <div class="video-info">
+	                    <div class="video-title">一生一世</div>
+	                    <div class="video-meta">已完结·一见如故，相伴此生</div>
+	                </div>
+	            </div>
+        </div>
+    </div>
+    
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>关于我们</h3>
+                <ul>
+                    <li>关于爱奇艺</li>
+                    <li>联系我们</li>
+                    <li>加入我们</li>
+                    <li>合作伙伴</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>帮助中心</h3>
+                <ul>
+                    <li>常见问题</li>
+                    <li>用户反馈</li>
+                    <li>会员服务</li>
+                    <li>侵权投诉</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>内容合作</h3>
+                <ul>
+                    <li>内容合作</li>
+                    <li>节目上传</li>
+                    <li>自制合作</li>
+                    <li>广告合作</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>关注我们</h3>
+                <ul>
+                    <li>微博</li>
+                    <li>微信</li>
+                    <li>抖音</li>
+                    <li>B站</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 爱奇艺 www.iqiyi.com 京ICP证000000号 京公网安备00000000000000号 京ICP备0000000号
+        </div>
+    </footer>
+</body>
+</html>
